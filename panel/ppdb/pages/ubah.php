@@ -1093,7 +1093,7 @@ return false;
 								</th>
 								<td>
 									<div class="form-group">
-										<input type="text" class="form-control" name="no_hp" placeholder="Nomor HP yang bisa dihubungi" value="<?php echo $baris['no_hp'] ?>">
+										<input type="text" class="form-control" name="no_hp" placeholder="Nomor HP yang bisa dihubungi" value="<?php echo $baris['no_hpwa_ayah'] ?>">
 									</div>
 								</td>
 							</tr>
@@ -1104,7 +1104,7 @@ return false;
 								</th>
 								<td>
 									<div class="form-group">
-										<input type="text" class="form-control" style="background: #E6E6FA" name="no_wa" placeholder="Nomor HP yang bisa di Whatsapp" value="<?php echo $baris['no_wa'] ?>">
+										<input type="text" class="form-control" style="background: #E6E6FA" name="no_wa" placeholder="Nomor HP yang bisa di Whatsapp" value="<?php echo $baris['no_hpwa_ibu'] ?>">
 									</div>
 								</td>
 							</tr>

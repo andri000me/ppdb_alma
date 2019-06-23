@@ -1101,7 +1101,7 @@
                         </th>
                         <td>
                             <div class="form-group">
-                                <input type="text" class="form-control" style="background: #E6E6FA" name="email" placeholder="Alamat Email Pendaftar" required oninvalid="this.setCustomValidity('data tidak boleh kosong')" oninput="setCustomValidity('')">
+                                <input type="text" class="form-control" style="background: #E6E6FA" name="email" placeholder="Alamat Email Pendaftar">
                             </div>
                         </td>
                     </tr>								
