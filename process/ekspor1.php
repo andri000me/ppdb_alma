@@ -30,14 +30,15 @@ header("Content-Disposition: attachment; filename=PPDB-$date.xls");
 	  <th>Penghasilan Orang Tua/Wali</th>
 	  <th>Jarak Rumah Ke Sekolah</th>
 	  <th>Transportasi Ke Sekolah</th>
-	  <th>Bidang Prestasi</th>
-	  <th>Tingkat Prestasi</th>
 	  <th>Penyakit Yg Pernah Diderita</th>	  
 	  <th>No. KK</th>	    
 	  <th>NIK Siswa</th>
+
+	  <!-- ubah total -->
+
+	  <th>RT / RW</th>
 	  <th>Alamat Jalan</th>
 	  <th>Nama Dusun</th>
-	  <th>RT/RW</th>
 	  <th>Desa</th>
 	  <th>Kecamatan</th>
 	  <th>Kota/Kabupaten</th>
@@ -45,77 +46,39 @@ header("Content-Disposition: attachment; filename=PPDB-$date.xls");
 	  <th>Kode Pos</th>
 	  <th>No HP / WA Ayah</th>
 	  <th>No Hp / WA Ibu</th>
-	  <th> </th>
+	  <th></th>
+
 	  <th>Nama Ayah</th>
-	  <th>Gelar</th>
+	  <th>Gelar Ayah</th>
 	  <th>NIK Ayah</th>
-	  <th>Pendidikan Terakhir Ayah</th>
-	  <th>Pekerjaan Ayah</th>	  
-	  <th>Spesifikasi Pekerjaan Ayah</th>
-	  <th> </th>
+	  <th>Pendidikan Ayah</th>
+	  <th>Pekerjaan Ayah</th>
+	  <th>Spesifikasi Ayah</th>
+	  <th></th>
+
 	  <th>Nama Ibu</th>
 	  <th>NIK Ibu</th>
-	  <th>Pendidikan Terakhir Ibu</th>
+	  <th>Pendidikan Ibu</th>
 	  <th>Pekerjaan Ibu</th>
-	  <th>Spesifikasi Pekerjaan Ibu</th>
-	  <th> </th>
+	  <th>Spesifikasi Ibu</th>
+	  <th>
+
 	  <th>Nama Wali</th>
-	  <th>Pekerjaan Wali</th>
-	  <th>Status Hubungan</th>
-	  <th>Alamat Jalan Wali</th>
-	  <th>Nama Dusun Wali</th>
-	  <th>RT/RW Wali</th>
-	  <th>Desa/Kelurahan Wali</th>
+	  <th>Spesifikasi Wali</th>
+	  <th>Status Wali</th>
+	  <th>RT / RW Wali</th>
+	  <th>Alternatif Wali</th>
+	  <th>Dusun Wali</th>
+	  <th>Desa Wali</th>
 	  <th>Kecamatan Wali</th>
-	  <th>Kota/Kabupaten Wali</th>
+	  <th>Kota Wali</th>
 	  <th>Provinsi Wali</th>
 	  <th>Kode Pos Wali</th>
-	  <th> </th>
-	  <th>No. Telp Wali</th>
-	  <th>Kode Kirim Surat</th>
+	  <th>No HP Wali</th>
+	  <th>No WA Wali</th>
+	  <th></th>
 	  <th>NISN</th>
-	  <th>Induk SD</th>
-	  <th>Induk MTS</th>
-	  <th>Induk MA</th>
-	  <th>Induk SMK</th>
-	  <th>Induk MADIN</th>
-	  <th>Induk PONDOK</th>
-	  <th>Kamar</th>
-	  <th> </th>
-	  <th>Tidak Naik</th>
-	  <th>TERMINAL</th>
-	  <th>Kelas Paralel Terakhir</th>
-	  <th>Kelas MADIN</th>
-	  <th>Tanggal Masuk</th>
-	  <th>Tanggal Lulus SD</th>
-	  <th>Tanggal Lulus MTS</th>
-	  <th>Tanggal Lulus MA/SMK</th>
-	  <th>Tanggal Lulus MADIN</th>
-	  <th>Tanggal Keluar/Mutasi/DO</th>
-	  <th>Catatan Keluar</th>
-	  <th>Catatan Akhir Tahun</th>
-	  <th> </th>
-	  <th>KET1</th>
-	  <th>KET2</th>
-	  <th> </th>
-	  <th> </th>
-	  <th>Asal SD/MI</th>
-	  <th>Kota SD</th>
-	  <th>MTS/SMP Asal</th>
-	  <th>Kota MTS/SMP</th>
-	  <th> </th>
-	  <th> </th>
-	  <th>Asal MTS/SMP</th>
-	  <th>Kota MTS</th>
-	  <th>Propinsi</th>
-	  <th>NPSN</th>
-	  <th>NSM</th>
-	  <th>MA/SMA/SMK Asal</th>
-	  <th>Propinsi MA/SMA/SMK</th>
-	  <th> </th>
-	  <th>No Rek </th>
-	  <th> </th>
-	  <th>Registrasi</th>
+
       
 </tr>
 </thead>
@@ -133,7 +96,15 @@ header("Content-Disposition: attachment; filename=PPDB-$date.xls");
                <tr>
                   <td><?php echo $no++;?></td>
                   <td><?php echo $row['nama'];?></td>
-				  <td><?php echo $row['jenis_kelamin'];?></td>
+				  <td>
+					  <?php
+							if($row['jenis_kelamin'] == 'PEREMPUAN'){
+								echo "P";
+							}else{
+								echo "L";
+							}
+					   ?>
+				</td>
                   <td><?php echo $row['tempat_lahir'];?></td>
                   <td><?php echo $row['tanggal_lahir'];?></td>
 				  <td><?php echo $row['domis'];?></td>
@@ -146,14 +117,13 @@ header("Content-Disposition: attachment; filename=PPDB-$date.xls");
 				  <td><?php echo $row['pghsl_ayh'];?></td>
 				  <td><?php echo $row['jarak_sekolahan'];?></td>	
 				  <td><?php echo $row['moda_transport'];?></td>
-				  <td></td>	
-				  <td></td>	
 				  <td><?php echo $row['kbk'];?></td>				  
 				  <td><?php echo $row['nkk'];?></td>
 				  <td><?php echo $row['nik'];?></td>
+
+				  <td><?php echo $row['rt'];?></td>	
 				  <td><?php echo $row['almt_jl'];?></td>
 				  <td><?php echo $row['nm_dsn'];?></td>
-				  <td><?php echo $row['rt'];?></td>				  
 				  <td><?php echo $row['nm_ds'];?></td>				  
 				  <td><?php echo $row['nm_kec'];?></td>
 				  <td><?php echo $row['nm_kt'];?></td>
@@ -178,68 +148,18 @@ header("Content-Disposition: attachment; filename=PPDB-$date.xls");
 				  <td><?php echo $row['nm_wali'];?></td>
 				  <td><?php echo $row['spk_wali'];?></td>
 				  <td><?php echo $row['stts_wali'];?></td>
+				  <td><?php echo $row['rt_wali'];?></td>
 				  <td><?php echo $row['alt_wali'];?></td>
 				  <td><?php echo $row['nm_dsn_wali'];?></td>
-				  <td><?php echo $row['rt_wali'];?></td>
 				  <td><?php echo $row['nm_ds_wali'];?></td>
 				  <td><?php echo $row['nm_kec_wali'];?></td>
 				  <td><?php echo $row['nm_kt_wali'];?></td>
 				  <td><?php echo $row['nm_prov_wali'];?></td>
 				  <td><?php echo $row['kode_pos_wali'];?></td>
-				  <td></td>	
+				  <td><?php echo $row['tlp_wali'];?></td>
 				  <td><?php echo $row['tlp_wali'];?></td>
 				  <td></td>	
-				  <td><?php echo $row['nisn'];?></td>
-				  <td></td>	
-				  <td></td>	
-				  <td></td>	
-				  <td></td>	
-				  <td></td>	
-				  <td></td>	
-				  <td></td>	
-				  <td></td>	
-				  <td></td>	
-				  <td></td>	
-				  <td></td>	
-				  <td></td>	
-				  <td></td>	
-				  <td></td>	
-				  <td><?php echo $row['tgl_lulus'];?></td>
-				  <td></td>	
-				  <td></td>	
-				  <td></td>	
-				  <td></td>	
-				  <td></td>	
-				  <td></td>	
-				  <td></td>	
-				  <td></td>	
-				  <td></td>	
-				  <td></td>	
-				  <td></td>	
-				  <td></td>	
-				  <td><?php echo $row['almt_smp'];?></td>
-				  <td><?php echo $row['kota_smp'];?></td>
-				  <td></td>	
-				  <td></td>	
-				  <td>
-					<?php 
-						if ($row['nama_smp2']!=="") {
-							echo $row['nama_smp2'];
-						}else{
-							echo $row['nama_smp'];
-							}
-						?>
-					</td>
-				  <td><?php echo $row['kota_smp'];?></td>	
-				  <td><?php echo $row['prov_smp'];?></td>
-				  <td></td>	
-				  <td></td>
-				  <td></td>	
-				  <td></td>	
-				  <td></td>	
-				  <td></td>			  
-				  <td><?php echo $row['msk_skl'];?></td>
-				  <td><?php echo $row['v_regis'];?></td>                          
+				  <td><?php echo $row['nisn'];?></td>                   
       </tr>
 <?php }
 ?>

@@ -1389,20 +1389,31 @@
                                                 </td>
                                         </tr>
                                         
-                                        <!--<tr>-->
-                                        <!--    <th>-->
-                                        <!--        <label for="d_kelas">Diterima Di Kelas *</label>-->
-                                        <!--    </th>-->
-                                        <!--        <td>-->
-                                        <!--            <div class="form-group">-->
-                                        <!--            <select class="form-control" name="d_kelas">-->
-                                        <!--            <option disabled>Pilih salah satu</option>-->
-                                        <!--            <option>10</option>-->
-                                        <!--            <option>11</option>-->
-                                        <!--            <option>12</option>-->
-                                        <!--            </div>-->
-                                        <!--        </td>-->
-                                        <!--</tr>-->
+                                        <tr>
+                                           <th>
+                                               <label for="d_kelas">Diterima Di Kelas *</label>
+                                           </th>
+                                               <td>
+                                                   <div class="form-group">
+                                                   <select class="form-control" name="d_kelas">
+                                                        <option disabled>Pilih salah satu</option>
+                                                        <option>TK-A</option>
+                                                        <option>TK-B</option>
+                                                        <option>1</option>
+                                                        <option>2</option>
+                                                        <option>3</option>
+                                                        <option>4</option>
+                                                        <option>5</option>
+                                                        <option>6</option>
+                                                        <option>7</option>
+                                                        <option>8</option>
+                                                        <option>9</option>
+                                                        <option>10</option>
+                                                        <option>11</option>
+                                                        <option>12</option>
+                                                   </div>
+                                               </td>
+                                        </tr>
                                         
                                         <!-- <tr>
                         <th > <label for="nama_smp">Asal Sekolah *</label></th>

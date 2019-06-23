@@ -37,27 +37,52 @@ if(!isset($_SESSION['username'])){
 		includeZero: false
 	},
 	axisX: {
-		title: "Nama Sekolah"
+		title: "Jenjang Pendidikan"
 	},
 	data: [{
-		type: "column",
-		yValueFormatString: "#,###\" Orang\"",
-		dataPoints: [
-		<?php 
-		$smp = 'smp ';
-		$coba = mysqli_query($konek, "SELECT*FROM tb_smp");
-		while ($cobalagi = mysqli_fetch_array($coba, MYSQLI_ASSOC)) {
-			?>
-			{ label: "<?php echo $cobalagi['nama_smp']; ?>"
-			, y:
+			type: "column",
+			yValueFormatString: "#,###\" Orang\"",
+			dataPoints: [
 			<?php 
-			$a = $cobalagi['nama_smp'];
-			$data = mysqli_query($konek, "SELECT*FROM tb_siswadaftar WHERE nama_smp='$a'");
-			echo mysqli_num_rows($data); ?>
-		},
-	<?php } ?>
-	]
-}]
+			$query = mysqli_query($konek, "SELECT * FROM user where level = 'ppdb'");
+			while ($jenjang_pendidikan = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
+
+					$exp_jenjang = explode('_', $jenjang_pendidikan['username']);
+
+					if(!empty($exp_jenjang[1])){
+
+						$jenjang = strtoupper($exp_jenjang[1]);
+
+						?>
+
+						{ label: "<?php echo $jenjang ?>"
+								, y:
+							<?php 
+							$dua_huruf = array('SD', 'TK', 'MA');
+							$tiga_huruf = array('SMP','MTS','SMK');
+
+							if(in_array($jenjang, $dua_huruf)){
+
+								$data = mysqli_query($konek, "SELECT * FROM tb_registrasi as r WHERE substr(r.register_nomor_pendaftaran,1,2)  ='$jenjang'");
+
+							}elseif(in_array($jenjang, $tiga_huruf)){
+
+								$data = mysqli_query($konek, "SELECT * FROM tb_registrasi as r WHERE substr(r.register_nomor_pendaftaran,1,3)  ='$jenjang'");
+
+							}
+
+							
+							echo mysqli_num_rows($data); ?>
+						},
+
+						<?php
+					}
+
+				?>
+				
+		<?php } ?>
+		]
+		}]
 });
 			chart.render();
 
