@@ -224,10 +224,10 @@ header("Content-Disposition: attachment; filename=PPDB-$date.xls");
 				  <td>
 					<?php 
 						if ($row['nama_smp2']!=="") {
-						echo $row['nama_smp2'];
-							}else{
-								echo $row['nama_smp'];
-								}
+							echo $row['nama_smp2'];
+						}else{
+							echo $row['nama_smp'];
+							}
 						?>
 					</td>
 				  <td><?php echo $row['kota_smp'];?></td>	

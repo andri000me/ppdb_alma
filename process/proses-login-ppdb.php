@@ -13,7 +13,8 @@ if(mysqli_num_rows($login)==1){
 	    $_SESSION['tingkatan'] = 'all';    
 	}else{
 	    $tingkatan = explode('_', $username);
-	    $_SESSION['tingkatan'] = strtoupper(substr($tingkatan[1], 0 , 2));
+		// $_SESSION['tingkatan'] = strtoupper(substr($tingkatan[1], 0 , 2));
+		$_SESSION['tingkatan'] = strtoupper($tingkatan[1]);
 	}
 	$_SESSION['username'] = $berhasil['username'];
 	$_SESSION['nama'] = $berhasil['nama'];

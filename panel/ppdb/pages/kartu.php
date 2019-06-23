@@ -75,7 +75,7 @@ foreach ($arr_tingkatan as $key => $value) {
 <div class="container" style="width:650px ; border: 1px solid;" id="kartu">
 	<div class="container" style="width:620px ; padding: 1px 15px 1px 15px; border-bottom: 1px solid;  ">
 		<table style="height: 120px" id="kartu">
-			<tr><th style="width: 80px" align="left"><img src="../../../../assets/img/logo-kemenag.jpeg" width="70px"></th>
+			<tr><th style="width: 80px" align="left"><img src="../../../assets/img/logo-kemenag.jpeg" width="70px"></th>
 				<th style="text-align: center; width: 450px">
 					<h4>Bukti Pendaftaran</h4>
 					<h4>ALMAHRUSIYAH TINGKAT - <?php echo $tingkatan;?></h4>

@@ -40,24 +40,24 @@ $row = mysqli_fetch_array($data);?>
 <body><br><br>
 <?php
 
-$tingkatan  = substr($row['register_nomor_pendaftaran'], 0,2);
-$arr_tingkatan = [
-					'TK' => 'TK',
-					'SD' => 'SD',
-					'SP' => 'SMP',
-					'MTS' => 'MS',
-					'SA' => 'SMA',
-				];
-foreach ($arr_tingkatan as $key => $value) {
+// $tingkatan  = substr($row['register_nomor_pendaftaran'], 0,2);
+// $arr_tingkatan = [
+// 					'TK' => 'TK',
+// 					'SD' => 'SD',
+// 					'SP' => 'SMP',
+// 					'MTS' => 'MTS',
+// 					'SA' => 'SMA',
+// 				];
+// foreach ($arr_tingkatan as $key => $value) {
 	
-	if($tingkatan == $key){
+// 	if($tingkatan == $key){
 
-		$tingkatan = $value;
-		break;
+// 		$tingkatan = $value;
+// 		break;
 
-	}
+// 	}
 
-}
+// }
 
 ?>
 
@@ -89,7 +89,7 @@ foreach ($arr_tingkatan as $key => $value) {
 			<tr><th style="width: 80px" align="left"><img src="../assets/img/logo-kemenag.jpeg" width="70px"></th>
 				<th style="text-align: center; width: 450px">
 					<h4>Bukti Pendaftaran</h4>
-					<h4>ALMAHRUSIYAH TINGKAT - <?php echo $tingkatan;?></h4>
+					<h4>ALMAHRUSIYAH TINGKAT - <?php echo $_SESSION['tingkatan'];?></h4>
 					<h5>Tahun Pelajaran 2019/2020</h5>
 				</th>
 				<th style="text-align: right; width: 80px"><img src="../images/logo/<?php echo $rows['logo_sekolah'];?>" width="70px"></th>

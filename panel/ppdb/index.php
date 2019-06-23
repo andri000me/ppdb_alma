@@ -51,14 +51,27 @@ if(!isset($_SESSION['username'])){
 
 					if(!empty($exp_jenjang[1])){
 
-						$jenjang = $exp_jenjang[1];
+						$jenjang = strtoupper($exp_jenjang[1]);
+
 						?>
 
-						{ label: "<?php echo strtoupper($jenjang) ?>"
+						{ label: "<?php echo $jenjang ?>"
 								, y:
 							<?php 
+							$dua_huruf = array('SD', 'TK', 'MA');
+							$tiga_huruf = array('SMP','MTS','SMK');
+
+							if(in_array($jenjang, $dua_huruf)){
+
+								$data = mysqli_query($konek, "SELECT * FROM tb_registrasi as r WHERE substr(r.register_nomor_pendaftaran,1,2)  ='$jenjang'");
+
+							}elseif(in_array($jenjang, $tiga_huruf)){
+
+								$data = mysqli_query($konek, "SELECT * FROM tb_registrasi as r WHERE substr(r.register_nomor_pendaftaran,1,3)  ='$jenjang'");
+
+							}
+
 							
-							$data = mysqli_query($konek, "SELECT * FROM tb_registrasi as r WHERE substr(r.register_nomor_pendaftaran,1,2)  ='$jenjang'");
 							echo mysqli_num_rows($data); ?>
 						},
 

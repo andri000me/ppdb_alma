@@ -1079,7 +1079,7 @@
                         </th>
                         <td>
                             <div class="form-group">
-                                <input type="text" class="form-control" style="background: #E6E6FA" name="no_hp" placeholder="Nomor HP / WA yang bisa dihubungi" required oninvalid="this.setCustomValidity('data tidak boleh kosong')" oninput="setCustomValidity('')">
+                                <input type="text" class="form-control" style="background: #E6E6FA" name="no_hp" placeholder="Nomor HP / WA yang bisa dihubungi" required oninvalid="this.setCustomValidity('data tidak boleh kosong')" oninput="setCustomValidity('')" maxlength="13">
                             </div>
                         </td>
                     </tr>
@@ -1090,7 +1090,7 @@
                         </th>
                         <td>
                             <div class="form-group">
-                                <input type="text" class="form-control" style="background: #E6E6FA" name="no_wa" placeholder="Nomor HP /  WA yang bisa dihubungi" required oninvalid="this.setCustomValidity('data tidak boleh kosong')" oninput="setCustomValidity('')">
+                                <input type="text" class="form-control" style="background: #E6E6FA" name="no_wa" placeholder="Nomor HP /  WA yang bisa dihubungi" required oninvalid="this.setCustomValidity('data tidak boleh kosong')" oninput="setCustomValidity('')" maxlength="13">
                             </div>
                         </td>
                     </tr>
@@ -1232,7 +1232,7 @@
                                             </th>
                                             <td>
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" style="background: #FAFAD2" name="nama_prestasi" onkeyup="this.value = this.value.toUpperCase()" placeholder="Nama Prestasi (Misalnya: Lomba debat bahasa inggris, OSN Tingkat SMP, dll">
+                                                    <input type="text" class="form-control" style="background: #FAFAD2" name="nama_prestasi" onkeyup="this.value = this.value.toUpperCase()" placeholder="Nama Prestasi (Misalnya: Lomba debat bahasa inggris, OSN, dll">
                                                 </div>
                                             </td>
                                         </tr>
@@ -1438,7 +1438,7 @@
                                     
                                             <tr>
                                                 <th>
-                                                <label for="no_un">Nomor Ujian Nasional SMP&nbsp;*</label>
+                                                <label for="no_un">Nomor Ujian Nasional&nbsp;*</label>
                                                 </th>
                                                 <td>
                                                     <div class="form-group">
