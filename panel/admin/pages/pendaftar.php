@@ -33,6 +33,7 @@
 				<thead>
 					<tr>
 						<th>No</th>
+						<th>No. Pendaftaran</th>
 						<th>Nama Lengkap</th>
 						<th>Tempat Lahir</th>
 						<th>Tanggal lahir</th>
@@ -57,9 +58,8 @@
 						{?>
 							<tr>
 								<td><?php echo $no++;?></td>
-								
+								<td><?php echo $row['register_nomor_pendaftaran'];?></td>
 								<td><?php echo $row['nama'];?></td>
-								
 								<td><?php echo $row['tempat_lahir'];?></td>
 								<td><?php echo $row['tanggal_lahir'];?></td>
 								<td><?php echo $row['jenis_kelamin'];?></td>

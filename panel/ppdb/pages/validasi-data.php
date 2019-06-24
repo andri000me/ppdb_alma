@@ -14,7 +14,7 @@
                 <tr>
                     <th>No</th>
                     <th>Nama</th>
-					<th>No UNAS SMP</th>
+					<th>No UNAS</th>
                     <th>FC Ijazah Legalisir</th>
                     <th>FC SKHUN Legalisir</th>
                     <th>FC KTP ORTU</th>
@@ -30,7 +30,17 @@
 
               $no=1;
 // jalankan query
-              $result = mysqli_query($konek, "SELECT * FROM tb_registrasi");
+            // die($_SESSION['tingkatan']);
+            if(in_array($_SESSION['tingkatan'], dua_huruf())){
+
+                $select = "SELECT * FROM tb_registrasi as r where substr(r.register_nomor_pendaftaran,1,2)  ='".$_SESSION['tingkatan']."'";
+
+            }else if(in_array($_SESSION['tingkatan'], tiga_huruf())){
+
+                $select = "SELECT * FROM tb_registrasi as r where substr(r.register_nomor_pendaftaran,1,3)  ='".$_SESSION['tingkatan']."'";
+            }
+            // die($select);
+              $result = mysqli_query($konek, $select);
 // tampilkan query
               while ($row=mysqli_fetch_array($result,MYSQLI_ASSOC))
                 {?>

@@ -1,5 +1,6 @@
 <?php
 include '../../config/koneksi.php';
+include '../../include/helper.php';
 session_start();
 if(!isset($_SESSION['username'])){
 	header('location:login.php');
@@ -58,14 +59,13 @@ if(!isset($_SESSION['username'])){
 						{ label: "<?php echo $jenjang ?>"
 								, y:
 							<?php 
-							$dua_huruf = array('SD', 'TK', 'MA');
-							$tiga_huruf = array('SMP','MTS','SMK');
+				
 
-							if(in_array($jenjang, $dua_huruf)){
+							if(in_array($jenjang, dua_huruf())){
 
 								$data = mysqli_query($konek, "SELECT * FROM tb_registrasi as r WHERE substr(r.register_nomor_pendaftaran,1,2)  ='$jenjang'");
 
-							}elseif(in_array($jenjang, $tiga_huruf)){
+							}elseif(in_array($jenjang, tiga_huruf())){
 
 								$data = mysqli_query($konek, "SELECT * FROM tb_registrasi as r WHERE substr(r.register_nomor_pendaftaran,1,3)  ='$jenjang'");
 

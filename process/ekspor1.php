@@ -2,6 +2,7 @@
 
 <?php
 include '../config/koneksi.php';
+include '../include/helper.php';
 // Fungsi header dengan mengirimkan raw data excel
 header("Content-type: application/vnd-ms-excel");
 
@@ -86,10 +87,26 @@ header("Content-Disposition: attachment; filename=PPDB-$date.xls");
 <tbody>
       <?php
 // buat koneksi dengan MySQL, gunakan database: universitas
-      include "../config/koneksi.php";
-      $no=1;
+	  include "../config/koneksi.php";
+	  session_start();
+	  $no=1;
+	  @$awal = $_GET['awal'];
+	  @$akhir = $_GET['akhir'];
+	  $akhir = date('Y-m-d', strtotime($akhir . ' +1 day'));
+	  if(in_array($_SESSION['tingkatan'], dua_huruf())){
+
+		$select = "SELECT *, SUBSTR(register_nomor_pendaftaran,1,2) AS dua,
+		SUBSTR(register_nomor_pendaftaran,1,3) AS tiga FROM tb_registrasi as r where substr(r.register_nomor_pendaftaran,1,2)  ='".$_SESSION['tingkatan']."' and tanggal_daftar between '$awal' and '$akhir' ";
+
+		}else if(in_array($_SESSION['tingkatan'], tiga_huruf())){
+
+			$select = "SELECT *, SUBSTR(register_nomor_pendaftaran,1,2) AS dua,
+			SUBSTR(register_nomor_pendaftaran,1,3) AS tiga FROM tb_registrasi as r where substr(r.register_nomor_pendaftaran,1,3)  ='".$_SESSION['tingkatan']."' and tanggal_daftar between '$awal' and '$akhir' ";
+			
+		}
 // jalankan query
-      $result = mysqli_query($konek, "SELECT * FROM tb_registrasi");
+		// die($select);
+	  $result = mysqli_query($konek, $select);
 // tampilkan query
       while ($row=mysqli_fetch_array($result,MYSQLI_ASSOC))
           {?>
@@ -108,7 +125,19 @@ header("Content-Disposition: attachment; filename=PPDB-$date.xls");
                   <td><?php echo $row['tempat_lahir'];?></td>
                   <td><?php echo $row['tanggal_lahir'];?></td>
 				  <td><?php echo $row['domis'];?></td>
-				  <td></td>		
+				  <td>
+					  <?php
+					//   $dua_huruf = array('SD', 'TK', 'MA');
+					//   $tiga_huruf = array('SMP','MTS','SMK');					  
+					  if(in_array($row['dua'], dua_huruf())){
+						
+						echo $row['dua'];
+
+					  }else if(in_array($row['tiga'], tiga_huruf())){
+						echo $row['tiga'];
+					  }
+				  	?>
+				  </td>		
 				  <td><?php echo $row['d_kelas'];?></td>
 				  <td></td>	  
 				  <td><?php echo $row['jml_sdr'];?></td>

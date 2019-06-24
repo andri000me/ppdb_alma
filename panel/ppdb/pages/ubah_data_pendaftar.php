@@ -30,7 +30,20 @@
                   include "../../config/koneksi.php";
                   $no=1;
 // jalankan query
-                  $result = mysqli_query($konek, "SELECT * FROM tb_registrasi");
+                    if(in_array($_SESSION['tingkatan'], dua_huruf())){
+
+                        $select = "SELECT *, SUBSTR(register_nomor_pendaftaran,1,2) AS dua,
+                        SUBSTR(register_nomor_pendaftaran,1,3) AS tiga FROM tb_registrasi as r where substr(r.register_nomor_pendaftaran,1,2)  ='".$_SESSION['tingkatan']."'";
+
+                    }else if(in_array($_SESSION['tingkatan'], tiga_huruf())){
+
+                        $select = "SELECT *, SUBSTR(register_nomor_pendaftaran,1,2) AS dua,
+                        SUBSTR(register_nomor_pendaftaran,1,3) AS tiga FROM tb_registrasi as r where substr(r.register_nomor_pendaftaran,1,3)  ='".$_SESSION['tingkatan']."'";
+                        
+                    }
+                // jalankan query
+                    // die($select);
+                $result = mysqli_query($konek, $select);
 // tampilkan query
                   while ($row=mysqli_fetch_array($result,MYSQLI_ASSOC))
                     {?>

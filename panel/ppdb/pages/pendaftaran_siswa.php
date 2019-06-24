@@ -1536,7 +1536,7 @@ jQuery(document).ready(function() {
          $(document).on('click', '#tingkatan', function(e) {
             
             var nomor_pendaftaran = $('#tingkatan').val();
-            nomor_pendaftaran = nomor_pendaftaran + "<?php echo $today;?>";
+            nomor_pendaftaran = nomor_pendaftaran;
             $.ajax({
                 url: '../../process/nomor_pendaftaran.php',
                 type: 'POST',            
@@ -1555,14 +1555,14 @@ jQuery(document).ready(function() {
         
         
         var nomor_pendaftaran = tingkatan;
-            nomor_pendaftaran = nomor_pendaftaran + "<?php echo $today;?>";
+            nomor_pendaftaran = nomor_pendaftaran;
             $.ajax({
                 url: '../../process/nomor_pendaftaran.php',
                 type: 'POST',            
                 data: {nomor_pendaftaran: nomor_pendaftaran},
                 success:function(data){
-    
-                    console.log(data);
+
+                    // console.log(data);
                     $("#nomor_register").val(data);
     
                 }

@@ -168,7 +168,7 @@ header("Content-Disposition: attachment; filename=Data Dapodik SMKS AL-MAHRUSIYA
 				<td><?php echo $row['spk_wali'];?></td>
 				<td><?php echo $row['pghsl_wali'];?></td>
 				<td><?php echo $row['no_rumah'];?></td>
-				<td><?php echo $row['no_hp'];?></td>
+				<td><?php echo $row['no_hpwa_ayah'];?></td>
 				<td><?php echo $row['email'];?></td>
 				<td><?php echo $row['tggi_bdn'];?></td>
 				<td><?php echo $row['brt_bdn'];?></td>
