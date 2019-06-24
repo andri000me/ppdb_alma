@@ -88,14 +88,14 @@ header("Content-Disposition: attachment; filename=PPDB-$date.xls");
       <?php
 // buat koneksi dengan MySQL, gunakan database: universitas
 	  include "../config/koneksi.php";
-	  session_start();
-	  $no=1;
-	  @$awal = $_GET['awal'];
-	  @$akhir = $_GET['akhir'];
-	  $akhir = date('Y-m-d', strtotime($akhir . ' +1 day'));
-	  if(in_array($_SESSION['tingkatan'], dua_huruf())){
+      session_start();
+      $no=1;
+      @$awal = $_GET['awal'];
+      @$akhir = $_GET['akhir'];
+      $akhir = date('Y-m-d', strtotime($akhir . ' +1 day'));
+      if(in_array($_SESSION['tingkatan'], dua_huruf())){
 
-		$select = "SELECT *, SUBSTR(register_nomor_pendaftaran,1,2) AS dua,
+        $select = "SELECT *, SUBSTR(register_nomor_pendaftaran,1,2) AS dua,
 		SUBSTR(register_nomor_pendaftaran,1,3) AS tiga FROM tb_registrasi as r where substr(r.register_nomor_pendaftaran,1,2)  ='".$_SESSION['tingkatan']."' and tanggal_daftar between '$awal' and '$akhir' ";
 
 		}else if(in_array($_SESSION['tingkatan'], tiga_huruf())){

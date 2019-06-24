@@ -9,7 +9,7 @@ $rows = mysqli_fetch_array($datas);?>
 <?php
 include '../../../config/koneksi.php';
 $no_un = $_GET['no_un'];
-$data = mysqli_query($konek, "SELECT * FROM tb_registrasi WHERE no_un='$no_un' ");
+$data = mysqli_query($konek, "SELECT * FROM tb_registrasi WHERE register_nomor_pendaftaran='$no_un' ");
 if(!$data){
 	die('SQL Error:' . mysqli_error($konek));
 }
@@ -18,7 +18,7 @@ $row = mysqli_fetch_array($data);?>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>PPDB SMK AL-MAHRUSIYAH LIRBOYO KEDIRI</title>
+	<title>PPDB AL-MAHRUSIYAH LIRBOYO KEDIRI</title>
 	<link rel="icon" href="bootstrap/favicon.ico">
 	<link rel="stylesheet" type="text/css" href="../../../dist/css/bootstrap.min.css">
 </head>
@@ -49,6 +49,9 @@ $arr_tingkatan = [
 					'MT' => 'MTS',
 					'MTS' => 'MTS',
 					'SA' => 'SMA',
+					'MDN' => 'MDN',
+					'MDK' => 'MDK',
+					'MD' => 'MDN',
 				];
 foreach ($arr_tingkatan as $key => $value) {
 	
@@ -140,7 +143,11 @@ foreach ($arr_tingkatan as $key => $value) {
 		</table>
 
 		<br>
-		<p>Saya tunduk dan patuh terhadap segala ketentuan dan peraturan PPDB <?php echo $rows['nama_sekolah'];?></p>
+		<p>
+			Saya tunduk dan patuh terhadap segala ketentuan dan peraturan PPDB 
+			AL-MAHRUSIYAH
+			<!-- <?php echo $rows['nama_sekolah'];?> -->
+		</p>
 		<table ><br>
 			<tr>
 				<th width="50px"></th>
@@ -167,8 +174,11 @@ foreach ($arr_tingkatan as $key => $value) {
 		</table>
 	</div>
 	<div class="card-footer" style="width:620px ; padding: 1px 15px 1px 15px; border-top: 1px solid" align="left">
-		<br>- Kartu ini sebagai bukti bahwa Anda merupakan calon peserta didik <?php echo $rows['nama_sekolah'];?>.
-		<br>- Kartu ini harus dicetak dan diserahkan kepanitia ppdb <?php echo $rows['nama_sekolah'];?>.
+		<br>- Kartu ini sebagai bukti bahwa Anda merupakan calon peserta didik AL-MAHRUSIYAH.
+				<!-- <?php echo $rows['nama_sekolah'];?>. -->
+		<br>- Kartu ini harus dicetak dan diserahkan kepanitia ppdb AL-MAHRUSIYAH.
+
+<!-- <?php echo $rows['nama_sekolah'];?>. -->
 		<br>- Jika mengalami kesulitan untuk mencetak silahkan hubungi panitia
 		<br>- Kartu ini sebagai <span style="font-weight: bold;">tanda bukti bahwa telah melakukan tahap pendaftaran</span>
 

@@ -117,17 +117,17 @@ $v_semua 				= $_POST['v_semua'];
 //PERINTAH MENGECEK AGAR TIDAK TERDAPAT USER YANG SAMA
 ?>
 <?php
-$cekdata="select no_un from tb_registrasi where no_un='$no_un'";
-$ada=mysqli_query($konek, $cekdata);
-if(mysqli_num_rows($ada)>0)
-	{ ?>
-		<script type="text/javascript">
-			alert("Nomor UN sudah terdaftar, pastikan nomor UN belum digunakan untuk mendaftar");
-			window.location.href="../panel/ppdb/index.php?page=Pendaftaran_siswa";
-		</script>
-		<?php
-	}
-	else{
+// $cekdata="select no_un from tb_registrasi where no_un='$no_un'";
+// $ada=mysqli_query($konek, $cekdata);
+// if(mysqli_num_rows($ada)>0)
+// 	{ ?>
+ 		<!-- <script type="text/javascript"> -->
+<!-- // 			alert("Nomor UN sudah terdaftar, pastikan nomor UN belum digunakan untuk mendaftar"); -->
+<!-- // 			window.location.href="../panel/ppdb/index.php?page=Pendaftaran_siswa"; -->
+		<!-- </script> -->
+ 		<?php
+// 	}
+// 	else{
 
 	// query SQL untuk insert data
 		$query = mysqli_query($konek, "INSERT INTO tb_registrasi SET 
@@ -241,10 +241,10 @@ if(mysqli_num_rows($ada)>0)
 										v_foto='$v_foto',
 										v_semua='$v_semua' ");
 		$query1 = mysqli_query($konek, "INSERT INTO tb_siswadaftar SET no_un='$no_un', nama='$nama',nisn='$nisn', tempat_lahir='$tempat_lahir', tanggal_lahir='$tanggal_lahir', jenis_kelamin='$jenis_kelamin', agama='$agama', no_hp='$no_hpwa_ayah', nama_smp='$nama_smp', nama_smp2='$nama_smp2' ");
-	}
+	// }
 	?>
 
 	<script type="text/javascript">
 		alert("Pendaftaran Berhasil");
-		window.location.href="../print/kartu.php?no_un=<?php echo $no_un ; ?>";
+		window.location.href="../panel/ppdb/pages/kartu.php?no_un=<?php echo $nomor_registrasi ; ?>";
 	</script>

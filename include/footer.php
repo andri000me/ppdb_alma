@@ -1,4 +1,7 @@
-<footer class="container">
-	<p class="float-right"><a href="#">Kembali ke atas</a></p>
-	<p>&copy; 2019-2020 SMK AL-MAHRUSIYAH LIRBOYO. </a></p>
+<footer class="container">
+	<p class="float-right"><a href="#">Kembali ke atas</a></p>
+	<?php
+	$year = date('Y');
+	?>
+	<p>&copy; <?php echo $year;?>-<?php echo ($year + 1);?> SMK AL-MAHRUSIYAH LIRBOYO. </a></p>
 </footer>
