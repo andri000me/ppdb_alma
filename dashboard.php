@@ -51,7 +51,8 @@ include 'config/koneksi.php';
         include 'include/helper.php';
         // $result = mysqli_query($konek, $data);
         $year = date('Y');
-        $now = date('Y-m-d H:i:s');
+        $now = date('Y-m-d H:i:s', strtotime("+ 7 hours"));
+        
         
     ?>
 	<!-- <marquee><h2>Selamat Datang di PPDB <?php echo $inf['nama_sekolah']; ?> </h2></marquee><br><hr> -->
