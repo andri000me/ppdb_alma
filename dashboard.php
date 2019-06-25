@@ -51,6 +51,7 @@ include 'config/koneksi.php';
         include 'include/helper.php';
         // $result = mysqli_query($konek, $data);
         $year = date('Y');
+        $now = date('Y-m-d H:i:s');
         
     ?>
 	<!-- <marquee><h2>Selamat Datang di PPDB <?php echo $inf['nama_sekolah']; ?> </h2></marquee><br><hr> -->
@@ -62,6 +63,7 @@ include 'config/koneksi.php';
                 
                 <div class="panel-heading">
                     <p>Data Pendaftaran Tahun <?php echo $year.' / '.($year + 1) ?></p>
+                    <h6>Terakhir Update <?php echo $now;?></h6>
                 </div>
 
                 <div class="panel-body">

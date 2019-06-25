@@ -1577,7 +1577,7 @@ jQuery(document).ready(function() {
     //asal sekolah
     // var select2 = $('select[name^="nama_smp"]').val();
     $("#asal_sekolah2").hide();
-    $('#asal_sekolah').change(function (e) { 
+    $('#asal_sekolah').click(function (e) { 
         e.preventDefault();        
         console.log(e.target.value);
         if( e.target.value == ''){
