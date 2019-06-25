@@ -48,10 +48,7 @@ include 'config/koneksi.php';
 
     <?php 
         include 'include/nav4.php';
-        include 'include/dashboard.php';
-        $dashboard = new dashboard;
-        $data = $dashboard->get_data();
-
+        include 'include/helper.php';
         // $result = mysqli_query($konek, $data);
         $year = date('Y');
         
@@ -110,15 +107,17 @@ include 'config/koneksi.php';
 
     <script>
         $(document).ready(function(){	
+
             $.ajax({
-                    type: "POST",
-                    url: "helper/dashboard_get.php",
-                    data: {tingkatan : ''},
-                    
-                    success: function (data) {
-                        $("#datatable").html(data);
-                    }
-                });
+                type: "POST",
+                url: "helper/dashboard_get.php",
+                data: {tingkatan : ''},
+                
+                success: function (data) {
+                    console.log(data);
+                    $("#datatable").html(data);
+                }
+            });
 
             $('#select_tingkatan').change(function (e) { 
                 
