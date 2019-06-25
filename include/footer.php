@@ -1,5 +1,5 @@
 <footer class="container">
-	<p class="float-right"><a href="#">Kembali ke atas</a></p>
+	<!-- <p class="float-right"><a href="#">Kembali ke atas</a></p> -->
 	<?php
 	$year = date('Y');
 	?>

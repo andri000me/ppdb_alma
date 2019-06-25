@@ -1440,17 +1440,27 @@ return false;
 									include "../../../config/koneksi.php";
 									$no=1;
 // jalankan query
-									$result = mysqli_query($konek, "SELECT * FROM tb_smp");
+									$result = mysqli_query($konek, "SELECT DISTINCT(nama_smp2) AS nama_sekolah FROM tb_siswadaftar" );
 									?>
 									<div class="form-group">
-										<select class="form-control" name="nama_smp" required oninvalid="this.setCustomValidity('data tidak boleh kosong')" oninput="setCustomValidity('')">
-											<option disabled>Pilih salah satu. Jika nama sekolah tidak ada dalam pilihan, klik Sekolah Lain.</option>
+										<select class="form-control" name="nama_smp" id="asal_sekolah" oninvalid="this.setCustomValidity('data tidak boleh kosong')" oninput="setCustomValidity('')">
+										
+											
 											<?php 
+											if(!empty($baris['nama_smp2'])){
+												echo '<option value="'.$baris['nama_smp2'].'">'.$baris['nama_smp2'].'</option>';
+											}else{
+												echo '<option value="">Pilih salah satu. Jika nama sekolah tidak ada dalam pilihan, klik Sekolah Lain.</option>';
+											}
 // tampilkan query
 											while ($row=mysqli_fetch_array($result,MYSQLI_ASSOC))
-												{?><option><?php echo $baris['nama_smp'] ?></option>
-											<option><?php echo $row['nama_smp']." ";?></option>
-										<?php }
+											{
+												
+												if($row['nama_sekolah'] && $row['nama_sekolah'] != $baris['nama_smp2']){
+													echo '<option value="'.$row['nama_sekolah'].'">'.$row['nama_sekolah'].'</option>';
+												}
+												
+											}
 										?>
 									</select></div>
 								</td>
@@ -1459,7 +1469,7 @@ return false;
 								<th></th>
 								<td>
 									<div class="form-group">
-										<input type="text" class="form-control" style="background: #FDD7D7" name="nama_smp2" onkeyup="this.value = this.value.toUpperCase()" placeholder="Hanya diisi jika nama SMP/MTS tidak ada dalam daftar di atas" value="<?php echo $baris['nama_smp2'] ?>">
+										<input type="text" class="form-control" style="background: #FDD7D7" id="asal_sekolah2" name="nama_smp2" onkeyup="this.value = this.value.toUpperCase()" placeholder="Hanya diisi jika nama sekolah tidak ada dalam daftar di atas" value="<?php echo $baris['nama_smp2'] ?>">
 									</div>
 								</td>
 							</tr>
@@ -1637,3 +1647,33 @@ return false;
 								</form>
 
 							</div><!-- /.container -->
+<script>
+	$(document).ready(function () {
+		
+		var asal = $("#asal_sekolah").val();
+		$("#asal_sekolah2").hide();
+		if(asal == ''){
+
+			$('#asal_sekolah2').show();		
+
+		}else{
+			$('#asal_sekolah2').hide();
+		}
+
+		$('#asal_sekolah').click(function (e) { 
+
+			if(e.target.value == ''){
+
+				$('#asal_sekolah2').show();
+
+			}else{
+
+				$('#asal_sekolah2').hide();
+				$('#asal_sekolah2').val('');
+			}
+
+		});
+
+
+	});
+</script>

@@ -57,14 +57,14 @@
                     
                 </td>
             </tr>
-            <tr>
+            <!-- <tr>
                 <th>Nomor Pendaftaran</th>
                 <td>
                     <div class="form-group">
                         <input type="text" class="form-control" name="register_nomor_pendaftaran" required="" readonly id="nomor_register" oninvalid="this.setCustomValidity('data tidak boleh kosong')">
                     </div>
                 </td>
-            </tr>
+            </tr> -->
             <tr>
                 <th style="width: 250px;">
                     <label for="nama">Nama Lengkap Pendaftar&nbsp;*</label>
@@ -1415,34 +1415,38 @@
                                                </td>
                                         </tr>
                                         
-                                        <!-- <tr>
+                                        <tr>
                         <th > <label for="nama_smp">Asal Sekolah *</label></th>
                         <td>
                             <?php
 // buat koneksi dengan MySQL, gunakan database: universitas
-                            include "../config/koneksi.php";
+                            // include "../config/koneksi.php";
                             $no=1;
 // jalankan query
-                            $result = mysqli_query($konek, "SELECT * FROM tb_smp");
+                            $result = mysqli_query($konek, "SELECT DISTINCT(nama_smp2) AS nama_sekolah FROM tb_siswadaftar" );
                             ?>
                             <div class="form-group">
-                                <select class="form-control" name="nama_smp" required oninvalid="this.setCustomValidity('data tidak boleh kosong')" oninput="setCustomValidity('')">
-                                    <option disabled>Pilih salah satu. Jika nama sekolah tidak ada dalam pilihan, klik Sekolah Lain.</option>
+                                <!-- <select class="form-control" name="nama_smp" id="asal_sekolah" required oninvalid="this.setCustomValidity('data tidak boleh kosong')" oninput="setCustomValidity('')"> -->
+                                <select class="form-control" name="nama_smp" id="asal_sekolah">
+                                    <option value="">Pilih salah satu. Jika nama sekolah tidak ada dalam pilihan, klik Sekolah Lain.</option>
                                     <?php 
 // tampilkan query
                                     while ($row=mysqli_fetch_array($result,MYSQLI_ASSOC))
-                                        {?>
-                                            <option><?php echo $row['nama_smp']." ";?></option>
-                                        <?php }
+                                        {
+                                            if($row['nama_sekolah']){
+                                                echo '<option value="'.$row['nama_sekolah'].'">'.$row['nama_sekolah'].'</option>';
+                                            }
+                                        }
                                         ?>
-                                    </select></div>
+                               </select>
+                            </div>
                                 </td>
-                            </tr> -->
+                            </tr>
                             <tr>
                                 <th></th>
                                 <td>
                                     <div class="form-group">
-                                        <input type="text" class="form-control" style="background: #FDD7D7" name="nama_smp2" onkeyup="this.value = this.value.toUpperCase()" placeholder="Hanya diisi jika nama Sekolah tidak ada dalam daftar di atas">
+                                        <input type="text" class="form-control" id="asal_sekolah2" style="background: #FDD7D7" name="nama_smp2" onkeyup="this.value = this.value.toUpperCase()" placeholder="Hanya diisi jika nama Sekolah tidak ada dalam daftar di atas">
                                     </div>
                                 </td>
                             </tr>
@@ -1569,6 +1573,21 @@ jQuery(document).ready(function() {
             });
         
     }
+
+    //asal sekolah
+    // var select2 = $('select[name^="nama_smp"]').val();
+    $("#asal_sekolah2").hide();
+    $('#asal_sekolah').change(function (e) { 
+        e.preventDefault();        
+        console.log(e.target.value);
+        if( e.target.value == ''){
+            
+            $("#asal_sekolah2").show();
+        }else{
+            $("#asal_sekolah2").hide();
+        }
+    });
+
 });
 
 function getkey(e)

@@ -1,9 +1,49 @@
 <?php
 include_once '../config/koneksi.php';
+session_start();
 
-// pre($_POST);die();
+$nomor_pendaftaran = $_SESSION['tingkatan'];
+$cek_nomor_pendaftaran = mysqli_query($konek, "SELECT register_nomor_pendaftaran FROM tb_registrasi where register_nomor_pendaftaran like '%$nomor_pendaftaran%' order by register_nomor_pendaftaran desc");
+if(!$cek_nomor_pendaftaran){
+  die('SQL Error:' . mysqli_error($konek));
+}
+$row = mysqli_fetch_array($cek_nomor_pendaftaran);
+
+if($row){
+
+	$get_angka_akhir = substr($row['register_nomor_pendaftaran'], -6);
+	$get_angka_akhir = $get_angka_akhir + 1;
+	$arr_angka = [
+                    '10' => '00000',
+                    '100' => '0000',
+                    '1000' => '000',
+                    '10000' => '00',
+                    '100000' => '0',
+                ];
+                
+    foreach($arr_angka as $key_angka => $value_angka){
+        
+        if($get_angka_akhir < $key_angka){
+            
+            $row = $nomor_pendaftaran.$value_angka.$get_angka_akhir;
+            break;
+
+        }
+
+    }
+
+}else{
+	$row = $nomor_pendaftaran.'000001';
+}
+
+if($_POST['nama_smp']){
+	$asal_sekolah = $_POST['nama_smp'];
+}else{
+	$asal_sekolah = $_POST['nama_smp2'];
+}
+// var_dump($asal_sekolah);die();
 // menyimpan data kedalam variabel
-$nomor_registrasi 		= $_POST['register_nomor_pendaftaran'];
+$nomor_registrasi 		= $row;
 $nama         		  	= $_POST['nama'];
 $jenis_kelamin       	= $_POST['jenis_kelamin'];
 $nisn					= $_POST['nisn'];
@@ -97,8 +137,8 @@ $nis					= $_POST['nis'];
 $msk_skl				= $_POST['msk_skl'];
 $tgl_lulus				= $_POST['tgl_lulus'];
 $d_kelas				= $_POST['d_kelas'];
-$nama_smp				= $_POST['nama_smp'];
-$nama_smp2				= $_POST['nama_smp2'];
+$nama_smp				= '';
+$nama_smp2				= $asal_sekolah;
 $no_un					= $_POST['no_un'];
 $no_ijazah				= $_POST['no_ijazah'];
 $no_skhun				= $_POST['no_skhun'];
@@ -225,8 +265,8 @@ $v_semua 				= $_POST['v_semua'];
 										msk_skl='$msk_skl',
 										tgl_lulus='$tgl_lulus',
 										d_kelas='$d_kelas',
-										nama_smp='$nama_smp',
-										nama_smp2='$nama_smp2',
+										nama_smp='',
+										nama_smp2='$asal_sekolah',
 										no_un='$no_un',
 										no_ijazah='$no_ijazah',
 										no_skhun='$no_skhun',
@@ -240,7 +280,18 @@ $v_semua 				= $_POST['v_semua'];
 										v_akta='$v_akta',
 										v_foto='$v_foto',
 										v_semua='$v_semua' ");
-		$query1 = mysqli_query($konek, "INSERT INTO tb_siswadaftar SET no_un='$no_un', nama='$nama',nisn='$nisn', tempat_lahir='$tempat_lahir', tanggal_lahir='$tanggal_lahir', jenis_kelamin='$jenis_kelamin', agama='$agama', no_hp='$no_hpwa_ayah', nama_smp='$nama_smp', nama_smp2='$nama_smp2' ");
+		
+		$query1 = mysqli_query($konek, "INSERT INTO tb_siswadaftar SET 
+												no_un='$no_un',
+												nama='$nama',
+												nisn='$nisn',
+												tempat_lahir='$tempat_lahir',
+												tanggal_lahir='$tanggal_lahir',
+												jenis_kelamin='$jenis_kelamin',
+												agama='$agama',
+												no_hp='$no_hpwa_ayah',
+												nama_smp='',
+												nama_smp2='$asal_sekolah' ");
 	// }
 	?>
 
