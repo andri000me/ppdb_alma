@@ -189,6 +189,13 @@ if(!isset($_SESSION['username'])){
 </head>
 <body>
 	<?php include '../../include/nav3.php'; ?>
+	<!-- <div class="col-lg-12"> -->
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<p class="text-right">Login as : <?php echo $_SESSION['username'];?><br>Lembaga : <?php echo $_SESSION['tingkatan'];?></p>
+			</div>
+		</div>
+	<!-- </div> -->
 	<div id="mySidenav" class="sidenav">
 		<a href="?page=dasboard" id="dasboard">Dasboard &nbsp;&nbsp;&nbsp; <span class="glyphicon glyphicon-home"></span></a>
 		<a href="?page=validasi" id="validasi">Validasi Data &nbsp;&nbsp;&nbsp; <span class="glyphicon glyphicon-tasks"></span></a>

@@ -198,6 +198,11 @@ if(!isset($_SESSION['username'])){
 </head>
 <body>
 	<?php include '../../include/nav3.php'; ?>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<p class="text-right">Login as : <?php echo $_SESSION['username'];?></p>
+		</div>
+	</div>
 	<div id="mySidenav" class="sidenav">
 		<a href="?page=dasboard" id="dasboard">Dasboard &nbsp;&nbsp;&nbsp; <span class="glyphicon glyphicon-home"></span></a>
 		<a href="?page=data-sekolah" id="data-sekolah">Data Sekolah &nbsp;&nbsp;&nbsp; <span class="glyphicon glyphicon-cog"></span></a>

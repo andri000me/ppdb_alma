@@ -45,7 +45,7 @@ $row = mysqli_fetch_array($data);?>
   <body class="text-center">
     <form action="../../process/proses-login-ppdb.php" method="post" class="form-signin">
       <br><img class="mb-4" src="../../images/logo/<?php echo $row['logo_sekolah'];?>" alt="" width="172" height="172">
-      <h3>PPDB <?php echo $row['nama_sekolah'];?></h3>
+      <h3>PPDB AL-MAHRUSIYAH</h3>
       <br>
       <label for="username" class="sr-only">Username</label>
       <input type="text" id="inputUsername" class="form-control" name="username" placeholder="Username">
