@@ -1,5 +1,6 @@
 <?php
 include '../../../config/koneksi.php';
+session_start();
 $id = $_POST['rowid'];
 $data = mysqli_query($konek, "SELECT * FROM tb_sekolah");
 if(!$data){
@@ -1341,21 +1342,28 @@ return false;
 										</div>
 										<div class="panel-body">
 											<table width="100%">
-												<tr>
-													<th style="width: 250px;">
-														<label for="jrsn_smk">Kompetensi Keahlian / Jurusan *</label>
-													</th>
-												<td>
-												<div class="form-group">
-												<select class="form-control" name="jrsn_smk" required oninvalid="this.setCustomValidity('data tidak boleh kosong')" oninput="setCustomValidity('')" value="<?php echo $baris['jrsn_smk'] ?>">
-												<option><?php echo $baris['jrsn_smk'] ?></option>
-												<option>IPA</option>
-												<option>IPS</option>
-												<option>AGAMA</option>
-												<option>BAHASA</option>
-												</div>											
-												</td>
-												</tr>
+												<?php
+														if($_SESSION['tingkatan'] == 'MA'){
+															?>
+															<tr>
+																<th style="width: 250px;">
+																	<label for="jrsn_smk">Kompetensi Keahlian / Jurusan *</label>
+																</th>
+																<td>
+																	<div class="form-group">
+																		<select class="form-control" name="jrsn_smk" required oninvalid="this.setCustomValidity('data tidak boleh kosong')" oninput="setCustomValidity('')" value="<?php echo $baris['jrsn_smk'] ?>">
+																			<option><?php echo $baris['jrsn_smk'] ?></option>
+																			<option>IPA</option>
+																			<option>IPS</option>
+																			<option>AGAMA</option>
+																			<option>BAHASA</option>
+																		</select>
+																	</div>											
+																</td>
+															</tr>
+															<?php
+														}
+												?>
 												
 												<tr>
 													<th>
@@ -1440,7 +1448,7 @@ return false;
 									include "../../../config/koneksi.php";
 									$no=1;
 // jalankan query
-									$result = mysqli_query($konek, "SELECT DISTINCT(nama_smp2) AS nama_sekolah FROM tb_siswadaftar" );
+									$result = mysqli_query($konek, "SELECT DISTINCT(nama_smp2) AS nama_sekolah FROM tb_registrasi" );
 									?>
 									<div class="form-group">
 										<select class="form-control" name="nama_smp" id="asal_sekolah" oninvalid="this.setCustomValidity('data tidak boleh kosong')" oninput="setCustomValidity('')">

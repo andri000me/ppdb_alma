@@ -64,11 +64,11 @@
 // jalankan query
 					if(in_array($_SESSION['tingkatan'], dua_huruf())){
 
-						$select = "SELECT * FROM tb_registrasi as r where substr(r.register_nomor_pendaftaran,1,2)  ='".$_SESSION['tingkatan']."'";
+						$select = "SELECT * FROM tb_registrasi as r where substr(r.register_nomor_pendaftaran,1,2)  ='".$_SESSION['tingkatan']."' and data_status='1'";
 
 					}else if(in_array($_SESSION['tingkatan'], tiga_huruf())){
 
-						$select = "SELECT * FROM tb_registrasi as r where substr(r.register_nomor_pendaftaran,1,3)  ='".$_SESSION['tingkatan']."'";
+						$select = "SELECT * FROM tb_registrasi as r where substr(r.register_nomor_pendaftaran,1,3)  ='".$_SESSION['tingkatan']."' and data_status='1'";
 					}
 					// die($select);
 					$result = mysqli_query($konek, $select);
@@ -140,14 +140,14 @@
 					alert('Tanggal awal harus lebih besar dari pada tanggal Akhir ');
 
 				}else if(akhir >= awal || awal >= akhir){
-					
+					var tingkatan = '<?php echo $_SESSION['tingkatan'];?>';
 					$.ajax({
 						type: "GET",
 						url: "../../process/ekspor1.php",
 						data: {awal : awal, akhir : akhir},
 						success: function (data) {
-							console.log(data);
-							window.location.href = '../../process/ekspor1.php';
+							// console.log(data);
+							window.location.href = '../../process/ekspor1.php?awal='+awal+'&akhir='+akhir+'&tingkatan='+tingkatan;
 						}
 					});
 					

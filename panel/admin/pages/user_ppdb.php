@@ -36,7 +36,7 @@
 					include "../../config/koneksi.php";
 					$no=1;
 // jalankan query
-					$result = mysqli_query($konek, "SELECT * FROM user");
+					$result = mysqli_query($konek, "SELECT * FROM user where user_status='1'");
 // tampilkan query
 					while ($row=mysqli_fetch_array($result,MYSQLI_ASSOC))
 						{?>
@@ -48,7 +48,7 @@
 								<td><?php echo $row['level'];?></td>
                                 <td>
                                     <a href='#myModal' class='btn btn-warning' data-toggle='modal' data-id="<?php echo $row['id'];?>"><span class='glyphicon glyphicon-pencil'></span> Ubah</a>
-                                    <a href="#" class="btn btn-danger" title="Hapus"><span class="glyphicon glyphicon-trash"></span></a>
+                                    <a href="../../process/delete_user_ppdb?id=<?php echo $row['id'];?>" class="btn btn-danger" title="Hapus"><span class="glyphicon glyphicon-trash"></span></a>
                                 </td>
 						<?php }
 						?>

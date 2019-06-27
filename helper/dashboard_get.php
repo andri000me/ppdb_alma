@@ -9,21 +9,21 @@ include '../include/helper.php';
         $select = "SELECT *, 
                     SUBSTR(register_nomor_pendaftaran,1,2) AS dua,
                     SUBSTR(register_nomor_pendaftaran,1,3) AS tiga
-                    FROM tb_registrasi as r where substr(r.register_nomor_pendaftaran,1,2)  ='$tingkatan' ";
+                    FROM tb_registrasi as r where substr(r.register_nomor_pendaftaran,1,2)  ='$tingkatan' and data_status='1' ";
 
     }else if(in_array($tingkatan, tiga_huruf())){
 
         $select = "SELECT *,
                     SUBSTR(register_nomor_pendaftaran,1,2) AS dua,
                     SUBSTR(register_nomor_pendaftaran,1,3) AS tiga
-                FROM tb_registrasi as r where substr(r.register_nomor_pendaftaran,1,3)  ='$tingkatan' ";
+                FROM tb_registrasi as r where substr(r.register_nomor_pendaftaran,1,3)  ='$tingkatan' and data_status='1' ";
 
     }else{
 
         $select = "SELECT *,
                     SUBSTR(register_nomor_pendaftaran,1,2) AS dua,
                     SUBSTR(register_nomor_pendaftaran,1,3) AS tiga
-                    FROM tb_registrasi as r ";
+                    FROM tb_registrasi as r where data_status='1'";
 
     }
     // die($select);

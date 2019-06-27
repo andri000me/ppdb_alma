@@ -1,6 +1,11 @@
 
 
 <?php
+ $awal = @$_GET['awal'];
+ $akhir = @$_GET['akhir'];
+ $tingkatan = @$_GET['tingkatan'];
+//  var_dump(array($awal, $akhir, $tingkatan));
+// die();
 include '../config/koneksi.php';
 include '../include/helper.php';
 // Fungsi header dengan mengirimkan raw data excel
@@ -9,9 +14,9 @@ header("Content-type: application/vnd-ms-excel");
 // Mendefinisikan nama file ekspor "hasil-export.xls"
 $date = date('Y-m-d');
 header("Content-Disposition: attachment; filename=PPDB-$date.xls");
-
+$year =date('Y');
 ?>
-<h2>Data KPA Siswa-Siswi<br><?php echo $inf['nama_sekolah']; ?><br>Tahun 2018/2019</h2>
+<h2>Data KPA Siswa-Siswi<br> PPDB AL-MAHRUSIYAH <br>Tahun <?php echo $year.'/'.($year+1);?></h2>
 
 <table id="tabel-data" class="table table-striped table-bordered" width="100%" cellspacing="0">
   <thead>
@@ -87,23 +92,28 @@ header("Content-Disposition: attachment; filename=PPDB-$date.xls");
 <tbody>
       <?php
 // buat koneksi dengan MySQL, gunakan database: universitas
-	  include "../config/koneksi.php";
+	  
       session_start();
-      $no=1;
-      @$awal = $_GET['awal'];
-      @$akhir = $_GET['akhir'];
-      $akhir = date('Y-m-d', strtotime($akhir . ' +1 day'));
-      if(in_array($_SESSION['tingkatan'], dua_huruf())){
+	  $no=1;
+	  
+	  $akhir = date('Y-m-d', strtotime($akhir . ' +1 day'));	  
+	  
+      if(in_array($tingkatan, dua_huruf())){
 
         $select = "SELECT *, SUBSTR(register_nomor_pendaftaran,1,2) AS dua,
-		SUBSTR(register_nomor_pendaftaran,1,3) AS tiga FROM tb_registrasi as r where substr(r.register_nomor_pendaftaran,1,2)  ='".$_SESSION['tingkatan']."' and tanggal_daftar between '$awal' and '$akhir' ";
+		SUBSTR(register_nomor_pendaftaran,1,3) AS tiga FROM tb_registrasi as r where substr(r.register_nomor_pendaftaran,1,2)  ='$tingkatan' and tanggal_daftar between '$awal' and '$akhir' and data_status='1' ";
 
-		}else if(in_array($_SESSION['tingkatan'], tiga_huruf())){
+		}else if(in_array($tingkatan, tiga_huruf())){
 
 			$select = "SELECT *, SUBSTR(register_nomor_pendaftaran,1,2) AS dua,
-			SUBSTR(register_nomor_pendaftaran,1,3) AS tiga FROM tb_registrasi as r where substr(r.register_nomor_pendaftaran,1,3)  ='".$_SESSION['tingkatan']."' and tanggal_daftar between '$awal' and '$akhir' ";
+			SUBSTR(register_nomor_pendaftaran,1,3) AS tiga FROM tb_registrasi as r where substr(r.register_nomor_pendaftaran,1,3)  ='$tingkatan' and tanggal_daftar between '$awal' and '$akhir' and data_status='1' ";
 			
+		}else{
+			$select = "SELECT *, SUBSTR(register_nomor_pendaftaran,1,2) AS dua,
+			SUBSTR(register_nomor_pendaftaran,1,3) AS tiga FROM tb_registrasi as r where tanggal_daftar between '$awal' and '$akhir' and data_status='1' ";
 		}
+		// echo $select;
+		// die();
 // jalankan query
 		// die($select);
 	  $result = mysqli_query($konek, $select);

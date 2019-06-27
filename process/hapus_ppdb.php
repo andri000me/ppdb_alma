@@ -7,5 +7,5 @@ mysqli_query($konek, "update tb_siswadaftar set data_status = '0' where no_penda
 // die();
 ?>
 <script type="text/javascript">
-	window.location.href="../panel/admin/index.php?page=ubah-data-pendaftar";
+	window.location.href="../panel/ppdb/index.php?page=ubah-data-pendaftar";
 </script>

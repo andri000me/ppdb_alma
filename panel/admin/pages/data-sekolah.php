@@ -167,32 +167,30 @@ while ($row=mysqli_fetch_array($result,MYSQLI_ASSOC))
 	<div class="col-md-6">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
-				Daftar SMP Wilayah <?php echo $inf['nama_sekolah']; ?>
+				Daftar Data Sekolah Terdaftar
 			</div>
 			<div class="panel-body">
 
-				<a class="btn btn-success " data-toggle="modal" data-target="#Modal-tambah" role="button"><span class="glyphicon glyphicon-plus"> </span> Tambah Data </a>
+				<!-- <a class="btn btn-success " data-toggle="modal" data-target="#Modal-tambah" role="button"><span class="glyphicon glyphicon-plus"> </span> Tambah Data </a> -->
 				<br><br>
-				<table id="tabel-data" class="table table-bordered table-striped" width="100%" cellspacing="0" >
+				<table id="tabel-data" class="table table-responsive table-bordered" width="100%" cellspacing="0" >
 					<thead>
 						<tr>
 							<th style="width: 20px">
 								No
 							</th>
 							<th>
-								Nama SMP
-							</th>
-							<th>
-								Aksi
+								Nama Sekolah
 							</th>
 						</tr>
 					</thead>
 					<?php
 					$no=1;
 // jalankan query
-					$result = mysqli_query($konek, "SELECT * FROM tb_smp");
+					$result = mysqli_query($konek, "SELECT distinct(nama_smp2) as nama_sekolah FROM tb_registrasi");
 // tampilkan query
 					while ($row=mysqli_fetch_array($result,MYSQLI_ASSOC))
+							if($row['nama_sekolah']){
 						{?>
 							<tbody>
 								<tr>
@@ -200,14 +198,11 @@ while ($row=mysqli_fetch_array($result,MYSQLI_ASSOC))
 										<?php echo $no++;?>
 									</td>
 									<td>
-										<?php echo $row['nama_smp']." ";?>
-									</td>
-									<td>
-										<a href="../../process/hapus-smp.php?id=<?php echo $row['id']; ?>" onclick="javascript: return confirm('Anda yakin hapus ?')"><button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span> Hapus</button></a>
-										<!--<a href="../../process/ubah-smp.php?id=<?php echo $row['id']; ?>"><button class="btn btn-info btn-xs"><span class="glyphicon glyphicon-pencil"></span> Ubah</button></a>-->
+										<?php echo $row['nama_sekolah']." ";?>
 									</td>
 								</tr>
 							<?php }
+							}
 							?>
 						</tbody>
 					</table>

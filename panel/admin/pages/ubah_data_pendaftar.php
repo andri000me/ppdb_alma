@@ -1,10 +1,4 @@
-   <link rel="stylesheet" type="text/css" href="../../assets/DataTables/jquery.dataTables.min.css">
 
-   <!-- data tables -->
-
-   <script src="../../assets/DataTables/jquery-3.1.0.js"></script>
-
-   <script src="../../assets/DataTables/jquery.dataTables.min.js"></script>
 
    <div class="col-md-12">
 
@@ -20,7 +14,7 @@
 
             
 
-            <table id="tabel-data" class="table table-responsive table-bordered" width="100%" cellspacing="0" >
+        <table id="tabel-data" class="table table-responsive table-bordered">
 
                 <thead >
 
@@ -98,11 +92,11 @@
 
                     </td>
 
-                    <td style="text-align: center;"><a href="../../process/hapus.php?no_un=<?php echo $row['no_un']; ?>" onclick="javascript: return confirm('Anda yakin hapus ?')"><button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"> </span>Hapus</button></a>
+                    <td style="text-align: center;"><a href="../../process/hapus.php?no_un=<?php echo $row['register_nomor_pendaftaran']; ?>" onclick="javascript: return confirm('Anda yakin hapus ?')"><button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"> </span>Hapus</button></a>
 
                     </td>
 
-                    <td style="text-align: center;"><a href="pages/kartu.php?no_un=<?php echo $row['no_un']; ?>"><button class="btn btn-info btn-xs"><span class="glyphicon glyphicon-print"> </span> cetak</button></a></td>
+                    <td style="text-align: center;"><a href="pages/kartu.php?no_un=<?php echo $row['register_nomor_pendaftaran']; ?>"><button class="btn btn-info btn-xs"><span class="glyphicon glyphicon-print"> </span> cetak</button></a></td>
 
 
 
@@ -125,6 +119,8 @@
 <script type="text/javascript">
 
     $(document).ready(function(){
+
+        $('#tabel-data').DataTable();
 
         $('#myModal').on('show.bs.modal', function (e) {
 
@@ -154,17 +150,6 @@
 
 </script>
 
-
-
-<script>
-
-    $(document).ready(function(){
-
-        $('#tabel-data').DataTable();
-
-    });
-
-</script>
 
 
 

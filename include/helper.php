@@ -11,7 +11,7 @@ function tiga_huruf(){
 
 function tingkatan(){
     
-    $tingkatan = array('SD', 'TK', 'MA','SMP','MTS','SMK', 'MDK', 'MDN');
+    $tingkatan = array('SD', 'TK', 'MA','SMP','MTS', 'MDK', 'MDN');
     return $tingkatan;
     
 }

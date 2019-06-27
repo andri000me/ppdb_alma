@@ -64,11 +64,11 @@ if(!isset($_SESSION['username'])){
 
 							if(in_array($jenjang, dua_huruf())){
 
-								$data = mysqli_query($konek, "SELECT * FROM tb_registrasi as r WHERE substr(r.register_nomor_pendaftaran,1,2)  ='$jenjang'");
+								$data = mysqli_query($konek, "SELECT * FROM tb_registrasi as r WHERE substr(r.register_nomor_pendaftaran,1,2)  ='$jenjang' and data_status='1'");
 
 							}elseif(in_array($jenjang, tiga_huruf())){
 
-								$data = mysqli_query($konek, "SELECT * FROM tb_registrasi as r WHERE substr(r.register_nomor_pendaftaran,1,3)  ='$jenjang'");
+								$data = mysqli_query($konek, "SELECT * FROM tb_registrasi as r WHERE substr(r.register_nomor_pendaftaran,1,3)  ='$jenjang' and data_status='1'");
 
 							}
 

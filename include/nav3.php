@@ -7,7 +7,7 @@
 	
 
 	<marquee><a class="navbar-brand">PPDB 
-			<?php echo  $_SESSION['tingkatan'];?> AL-MAHRUSIYAH
+			<?php echo  isset($_SESSION['tingkatan']) ? $_SESSION['tingkatan'] : '';?> AL-MAHRUSIYAH
 			<!-- <?php echo $inf['nama_sekolah']; ?> -->
 		</a></marquee>
 

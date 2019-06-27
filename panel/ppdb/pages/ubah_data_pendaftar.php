@@ -33,12 +33,12 @@
                     if(in_array($_SESSION['tingkatan'], dua_huruf())){
 
                         $select = "SELECT *, SUBSTR(register_nomor_pendaftaran,1,2) AS dua,
-                        SUBSTR(register_nomor_pendaftaran,1,3) AS tiga FROM tb_registrasi as r where substr(r.register_nomor_pendaftaran,1,2)  ='".$_SESSION['tingkatan']."'";
+                        SUBSTR(register_nomor_pendaftaran,1,3) AS tiga FROM tb_registrasi as r where substr(r.register_nomor_pendaftaran,1,2)  ='".$_SESSION['tingkatan']."' and data_status='1'";
 
                     }else if(in_array($_SESSION['tingkatan'], tiga_huruf())){
 
                         $select = "SELECT *, SUBSTR(register_nomor_pendaftaran,1,2) AS dua,
-                        SUBSTR(register_nomor_pendaftaran,1,3) AS tiga FROM tb_registrasi as r where substr(r.register_nomor_pendaftaran,1,3)  ='".$_SESSION['tingkatan']."'";
+                        SUBSTR(register_nomor_pendaftaran,1,3) AS tiga FROM tb_registrasi as r where substr(r.register_nomor_pendaftaran,1,3)  ='".$_SESSION['tingkatan']."' and data_status='1'";
                         
                     }
                 // jalankan query
@@ -61,7 +61,7 @@
                         ?></td>
                         <td style="text-align: center;"><?php echo "<a href='#myModal' class='btn btn-success btn-xs' id='custId' data-toggle='modal' data-id=".$row['id']."><span class='glyphicon glyphicon-pencil'></span> Ubah</a>"; ?>
                     </td>
-                    <td style="text-align: center;"><a href="../../process/hapus.php?no_un=<?php echo $row['no_un']; ?>" onclick="javascript: return confirm('Anda yakin hapus ?')"><button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"> </span>Hapus</button></a>
+                    <td style="text-align: center;"><a href="../../process/hapus_ppdb.php?no_un=<?php echo $row['register_nomor_pendaftaran']; ?>" onclick="javascript: return confirm('Anda yakin hapus ?')"><button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"> </span>Hapus</button></a>
                     </td>
                     <td style="text-align: center;"><a href="pages/kartu.php?no_un=<?php echo $row['register_nomor_pendaftaran']; ?>"><button class="btn btn-info btn-xs"><span class="glyphicon glyphicon-print"> </span> cetak</button></a></td>
 

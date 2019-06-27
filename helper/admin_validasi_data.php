@@ -1,15 +1,35 @@
-   <link rel="stylesheet" type="text/css" href="../../assets/DataTables/jquery.dataTables.min.css">
-   <!-- data tables -->
-   <script src="../../assets/DataTables/jquery-3.1.0.js"></script>
-   <script src="../../assets/DataTables/jquery.dataTables.min.js"></script>
-   <div class="col-md-12">
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            Validasi fisik data pendaftar
-        </div>
+<?php
+include '../config/koneksi.php';
+include '../include/helper.php';
 
-        <div class="panel-body">
-           <table id="example" class="table table-hover table-info table-bordered" width="100%" cellspacing="0" >
+$tingkatan = isset($_POST['tingkatan']) ? $_POST['tingkatan'] : '';
+// die($tingkatan);
+
+
+    if(in_array($tingkatan, dua_huruf())){
+
+        $select = "SELECT *, 
+                    SUBSTR(register_nomor_pendaftaran,1,2) AS dua,
+                    SUBSTR(register_nomor_pendaftaran,1,3) AS tiga
+                    FROM tb_registrasi as r where substr(r.register_nomor_pendaftaran,1,2)  ='$tingkatan' and data_status = '1' ";
+
+    }else if(in_array($tingkatan, tiga_huruf())){
+
+        $select = "SELECT *,
+                    SUBSTR(register_nomor_pendaftaran,1,2) AS dua,
+                    SUBSTR(register_nomor_pendaftaran,1,3) AS tiga
+                FROM tb_registrasi as r where substr(r.register_nomor_pendaftaran,1,3)  ='$tingkatan' and data_status = '1' ";
+
+    }else{
+
+        $select = "SELECT *,
+                    SUBSTR(register_nomor_pendaftaran,1,2) AS dua,
+                    SUBSTR(register_nomor_pendaftaran,1,3) AS tiga
+                    FROM tb_registrasi as r where data_status = '1' ";
+
+    }
+?>
+<table id="example" class="table table-hover table-info table-bordered" width="100%" cellspacing="0" >
             <thead style="text-align: center;">
                 <tr>
                     <th>No</th>
@@ -30,16 +50,7 @@
 
               $no=1;
 // jalankan query
-            // die($_SESSION['tingkatan']);
-            if(in_array($_SESSION['tingkatan'], dua_huruf())){
-
-                $select = "SELECT * FROM tb_registrasi as r where substr(r.register_nomor_pendaftaran,1,2)  ='".$_SESSION['tingkatan']."' and data_status='1'";
-
-            }else if(in_array($_SESSION['tingkatan'], tiga_huruf())){
-
-                $select = "SELECT * FROM tb_registrasi as r where substr(r.register_nomor_pendaftaran,1,3)  ='".$_SESSION['tingkatan']."' and data_status='1'";
-            }
-            // die($select);
+              
               $result = mysqli_query($konek, $select);
 // tampilkan query
               while ($row=mysqli_fetch_array($result,MYSQLI_ASSOC))
@@ -121,14 +132,9 @@
         ?>
     </tbody>
 </table>
-</div>
-</div>
-</div>
 
 <script type="text/javascript">
     $(document).ready(function() {
         $('#example').DataTable();
     } );
 </script>
-
-
