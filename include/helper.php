@@ -15,4 +15,23 @@ function tingkatan(){
     return $tingkatan;
     
 }
+
+function logo_panel($tingkatan){
+    // die($tingkatan);
+    $kemenag = ['MTS', 'MA', 'MDN', 'MDK'];
+    $dinas = ['SD','SMP'];
+    $logo = '';
+
+    if(in_array($tingkatan, $kemenag)){
+
+        $logo = '../../../assets/img/logo-kemenag.jpeg';
+
+    }else if(in_array($tingkatan, $dinas)){
+
+        $logo = '../../../images/logo/download.png';
+
+    }
+
+    return $logo;
+}
 ?>

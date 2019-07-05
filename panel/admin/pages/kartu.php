@@ -1,6 +1,7 @@
 
 <?php 
 include '../../../config/koneksi.php';
+include '../../../include/helper.php';
 $datas = mysqli_query($konek, "SELECT * FROM tb_sekolah");
 if(!$datas){
 	die('SQL Error:' . mysqli_error($konek));
@@ -40,6 +41,7 @@ $row = mysqli_fetch_array($data);?>
 <?php
 
 $tingkatan  = substr($row['register_nomor_pendaftaran'], 0,2);
+
 $arr_tingkatan = [
 					'TK' => 'TK',
 					'SD' => 'SD',
@@ -52,12 +54,14 @@ $arr_tingkatan = [
 					'MDN' => 'MDN',
 					'MDK' => 'MDK',
 					'MD' => 'MDN',
+					'MA' => 'MA'
 				];
 foreach ($arr_tingkatan as $key => $value) {
 	
 	if($tingkatan == $key){
 
 		$tingkatan = $value;
+		$logo = logo_panel($tingkatan);
 		break;
 
 	}
@@ -78,7 +82,7 @@ foreach ($arr_tingkatan as $key => $value) {
 <div class="container" style="width:650px ; border: 1px solid;" id="kartu">
 	<div class="container" style="width:620px ; padding: 1px 15px 1px 15px; border-bottom: 1px solid;  ">
 		<table style="height: 120px" id="kartu">
-			<tr><th style="width: 80px" align="left"><img src="../../../assets/img/logo-kemenag.jpeg" width="70px"></th>
+			<tr><th style="width: 80px" align="left"><img src="<?php echo $logo;?>" width="70px"></th>
 				<th style="text-align: center; width: 450px">
 					<h4>Bukti Pendaftaran</h4>
 					<h4>ALMAHRUSIYAH TINGKAT - <?php echo $tingkatan;?></h4>

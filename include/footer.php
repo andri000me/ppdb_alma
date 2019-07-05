@@ -3,5 +3,5 @@
 	<?php
 	$year = date('Y');
 	?>
-	<p>&copy; <?php echo $year;?>-<?php echo ($year + 1);?> SMK AL-MAHRUSIYAH LIRBOYO. </a></p>
+	<p>&copy; <?php echo $year;?>-<?php echo ($year + 1);?> AL-MAHRUSIYAH LIRBOYO. </a></p>
 </footer>
